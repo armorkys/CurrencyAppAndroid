@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RestClientAndroid</string>
+    <string name="app_name">Currency App</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -9,4 +9,14 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="SERVER_URL">http://78.61.102.30:8089</string>
+
+    <string-array name="currencyList">
+        <item>EUR</item>
+        <item>GBP</item>
+        <item>RUB</item>
+        <item>USD</item>
+    </string-array>
+
+
 </resources>

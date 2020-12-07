@@ -1,33 +1,46 @@
 package com.example.restclientandroid;
 
-import com.example.restclientandroid.model.CCurency;
-import com.example.restclientandroid.model.CustomInfo;
+import com.example.restclientandroid.model.FxRateHandling;
+import com.example.restclientandroid.model.FxRatesHandling;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface APICall {
 
-    //"http://localhost:8089/android/"
-    //"http://localhost:8089/android/1"
-    //"http://localhost:8089/android/all"
+    @GET("/getCurrent")
+    Call<FxRatesHandling> getFxRates();
 
-    @GET("single")
-    Call<CCurency> getCurrencySingle();
 
-    @GET("all")
-    Call<List<CCurency>> getAllCurrency();
+    @GET("/getCurrencyHistory/{ccy}")
+    Call<FxRatesHandling> getCurrencyHistory(
+            @Path("ccy") String ccy);
 
-    @GET("infoSingle")
-    Call<CustomInfo> getInfoSingle();
+    @GET("/getCurrencyHistoryCustom/{ccy}+from={dateFrom}+dateTo{dateTo}")
+    Call<FxRatesHandling> getCurrencyHistoryCustom(
+            @Path("ccy") String ccy,
+            @Path("dateFrom") String dateFrom,
+            @Path("dateTo") String dateTo
+    );
 
-    @GET("infoAll")
-    Call<List<CustomInfo>> getInfoAll();
 
-    @GET("infoSingle")
-     public void getCustomInfoSingle(Callback<CustomInfo> callback);
+    @GET("/getCurrencyList")
+    Call<List<String>> getCurrencyList();
+
+
+//    @GET("all")
+//    Call<List<CCurency>> getAllCurrency();
+//
+//    @GET("infoSingle")
+//    Call<CustomInfo> getInfoSingle();
+//
+//    @GET("infoAll")
+//    Call<List<CustomInfo>> getInfoAll();
+//
+//    @GET("infoSingle")
+//     public void getCustomInfoSingle(Callback<CustomInfo> callback);
 
 }

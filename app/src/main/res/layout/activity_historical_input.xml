@@ -1,90 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnAll5"
-        android:layout_width="110dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:onClick="loadFullListView"
-        android:text="All"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnHistorical5"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="loadHistoricalAView"
-        android:text="Historical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnFavorites5"
-        app:layout_constraintStart_toEndOf="@+id/btnAll5" />
-
-    <Button
-        android:id="@+id/btnFavorites5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:onClick="loadFavouritesView"
-        android:text="Favourites"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="loadHistoricalBView"
-        android:text="Search Currency History"
-        app:layout_constraintBottom_toTopOf="@+id/btnHistorical5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputCurrencyName"
-        app:layout_constraintVertical_bias="0.188" />
-
-    <EditText
-        android:id="@+id/txtInputCurrencyName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:text="Search Ratio History"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="'EUR', 'USD', 'GBP'"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputDateTo" />
+        android:id="@+id/txtTitleHistoryInput"/>
 
-    <EditText
-        android:id="@+id/txtInputDateFrom"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Date From"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/txtInputDateTo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutInput"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtTitleHistoryInput"
         android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Date To"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputDateFrom" />
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/txtInputDateFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:hint="Date To"
+            android:text=""
+            android:textSize="12sp"
+            android:maxLength="10"/>
+
+        <EditText
+            android:id="@+id/txtInputDateTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:textSize="12sp"
+            android:hint="Date From"
+            android:text=""
+            android:layout_below="@id/txtInputDateFrom"
+            android:layout_marginTop="15dp"
+            android:maxLength="10"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/spinnerCurrencyList"
+            android:layout_below="@+id/txtInputDateTo"
+            android:layout_marginTop="15dp"
+            android:entries="@array/currencyList"
+            android:dropDownWidth="75dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:id="@+id/btnHistorySearch"
+            android:layout_below="@+id/spinnerCurrencyList"
+            android:layout_centerHorizontal="true"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutRelativeButton"
+        android:layout_below="@+id/relativeLayoutInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        >
+
+        <Button
+            android:id="@+id/btnAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All" />
+
+        <Button
+            android:id="@+id/btnHistorical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historical"
+            android:layout_toRightOf="@+id/btnAll"
+            android:layout_marginLeft="15dp"
+            />
+
+        <Button
+            android:id="@+id/btnComparison"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/btnHistorical"
+            android:text="Convert" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

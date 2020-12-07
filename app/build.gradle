@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.restclientandroid"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,6 +45,8 @@ dependencies {
     //Converter for retrofit : for serialization and deserialize
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    //GraphView library
+    implementation 'com.jjoe64:graphview:4.2.2'
 
 
 }

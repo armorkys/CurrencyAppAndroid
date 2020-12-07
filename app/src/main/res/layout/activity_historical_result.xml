@@ -1,82 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnAll4"
-        android:layout_width="110dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:onClick="loadFullListView"
-        android:text="All"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnHistorical4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:onClick="loadHistoricalAView"
-        android:text="Historical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnFavorites4"
-        app:layout_constraintStart_toEndOf="@+id/btnAll4" />
-
-    <Button
-        android:id="@+id/btnFavorites4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:onClick="loadFavouritesView"
-        android:text="Favourites"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgGraph"
-        android:layout_width="353dp"
-        android:layout_height="392dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnHistorical4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCurrencyName2"
-        app:layout_constraintVertical_bias="0.346"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txtCurrencyName"
-        android:layout_width="216dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:text="EUR, USD, GBP"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="USD"
+        android:textSize="26sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txtCurrencyName2"
-        android:layout_width="294dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="10dp"
-        android:scaleX="1"
-        android:scaleY="1"
-        android:text="Date From - Date To"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCurrencyName" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:id="@+id/txtCurrencyDates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCurrencyName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="2019/01/01 - 2020/01/01"
+        android:textSize="18sp" />
+
+
+
+
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_below="@+id/txtCurrencyDates"
+            android:layout_marginTop="30dp"/>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/layoutRelativeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/graph"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        >
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
