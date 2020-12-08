@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
-            android:hint="Date To"
+            android:hint="Date From"
             android:text=""
             android:textSize="15sp"
             android:maxLength="10"/>
@@ -43,7 +43,7 @@
             android:ems="10"
             android:inputType="date"
             android:textSize="15sp"
-            android:hint="Date From"
+            android:hint="Date To"
             android:text=""
             android:layout_below="@id/txtInputDateFrom"
             android:layout_marginTop="15dp"

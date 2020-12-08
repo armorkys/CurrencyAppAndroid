@@ -19,14 +19,16 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,37 +42,57 @@ public class HistoricResultsActivity extends AppCompatActivity {
     private List<FxRateHandling> historicData;
     private APICall myApiCall;
     private Calendar currentDate;
+    private  HashMap<String, Float> hMap;
+    private TreeMap<String, Float> sortedMap;
 
-
-    public void historicDataReverse() {
-        List<FxRateHandling> historicDataReversed = new ArrayList<>();
-        for (int i = historicData.size() - 1; i > 0; i--) {
-            historicDataReversed.add(historicData.get(i));
-        }
-        historicData = historicDataReversed;
+    public static TreeMap<String, Float> sortByKey(HashMap<String, Float> mapToSort) {
+        TreeMap<String, Float> sortedMap = new TreeMap<>();
+        sortedMap.putAll(mapToSort);
+        return sortedMap;
     }
 
     public void graphLoad() {
-        historicDataReverse();
 
-        List<Float> values = new ArrayList<>();
+       hMap = new HashMap<>();
 
-        List<Date> datesList = new ArrayList<>();
-        GregorianCalendar gCalendar;
         int year, month, day;
 
         for (FxRateHandling f : historicData) {
-            year = Integer.parseInt(f.getDt().substring(0, 4));
-            month = Integer.parseInt(f.getDt().substring(5, 7));
-            day = Integer.parseInt(f.getDt().substring(8, 10));
-            gCalendar = new GregorianCalendar(year, month, day);
-            datesList.add(gCalendar.getTime());
+            hMap.put(f.getDt(), (f.getCcyAmt().get(1).getAmt()).floatValue());
         }
 
-        for (FxRateHandling f : historicData) {
-            values.add((f.getCcyAmt().get(1).getAmt()).floatValue());
+        sortedMap = sortByKey(hMap);
+        List<Float> values = new ArrayList<>();
+
+        List<Date> datesList = new ArrayList<>();
+        GregorianCalendar gCalendar, gCalendarTemp = null;
+
+        for (Map.Entry<String, Float> entry : sortedMap.entrySet()) {
+            String s = entry.getKey();
+            Float aDouble = entry.getValue();
+            year = Integer.parseInt(s.substring(0, 4));
+            month = Integer.parseInt(s.substring(5, 7));
+            day = Integer.parseInt(s.substring(8, 10));
+            gCalendar = new GregorianCalendar(year, month, day);
+
+            if(gCalendarTemp == null){
+                gCalendarTemp = gCalendar;
+                System.out.println("First iteration");
+                datesList.add(gCalendar.getTime());
+                values.add(aDouble);
+            } else{
+                if(gCalendar.after(gCalendarTemp) ==false){
+                    System.out.println("Skipped unsorted value");
+                } else{
+                    datesList.add(gCalendar.getTime());
+                    values.add(aDouble);
+                    gCalendarTemp = gCalendar;
+                }
+            }
         }
+
         DataPoint[] dateArray = new DataPoint[values.size()];
+
         try {
             for (int i = 0; i < values.size(); i++) {
                 dateArray[i] = new DataPoint(datesList.get(i), values.get(i));
@@ -84,15 +106,12 @@ public class HistoricResultsActivity extends AppCompatActivity {
 
         graph.addSeries(series);
 
-
-
         Float maxValue = values.stream().max(Comparator.comparing(Float::floatValue)).get();
         Float minValue = values.stream().min(Comparator.comparing(Float::floatValue)).get();
 
         graph.getViewport().setMinY(minValue);
         graph.getViewport().setMaxY(maxValue);
         graph.getViewport().setYAxisBoundsManual(true);
-
 
         graph.getGridLabelRenderer().setHumanRounding(true);
         graph.getViewport().setScalable(true);
@@ -101,13 +120,13 @@ public class HistoricResultsActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setNumHorizontalLabels(3);
         graph.getGridLabelRenderer().setNumVerticalLabels(8);
 
+        graph.setCursorMode(true);
     }
 
     public void openHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,8 +150,8 @@ public class HistoricResultsActivity extends AppCompatActivity {
 
         if (dateFrom == null || dateTo == null) {
             call = myApiCall.getCurrencyHistory(currencyName);
-            dateFrom = (currentDate.get(Calendar.YEAR) + -1) + "-" + (currentDate.get(Calendar.MONTH)+1)+ "-" + currentDate.get(Calendar.DAY_OF_MONTH);
-            dateTo = currentDate.get(Calendar.YEAR) + "-" + (currentDate.get(Calendar.MONTH)+1)+ "-" + currentDate.get(Calendar.DAY_OF_MONTH);
+            dateFrom = (currentDate.get(Calendar.YEAR) + -1) + "-" + (currentDate.get(Calendar.MONTH) + 1) + "-" + currentDate.get(Calendar.DAY_OF_MONTH);
+            dateTo = currentDate.get(Calendar.YEAR) + "-" + (currentDate.get(Calendar.MONTH) + 1) + "-" + currentDate.get(Calendar.DAY_OF_MONTH);
         } else {
             call = myApiCall.getCurrencyHistoryCustom(currencyName, dateFrom, dateTo);
         }
