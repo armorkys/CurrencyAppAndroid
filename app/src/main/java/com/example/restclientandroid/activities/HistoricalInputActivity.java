@@ -41,6 +41,11 @@ public class HistoricalInputActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void openComparisonLayout() {
+        Intent intent = new Intent(this, ComparisonActivity.class);
+        startActivity(intent);
+    }
+
     public void openHistoricResult(View v, String curName, String dateFrom, String dateTo) {
         Intent intent = new Intent(this, HistoricResultsActivity.class);
         intent.putExtra("CurrencyName",  curName);
@@ -110,6 +115,9 @@ public class HistoricalInputActivity extends AppCompatActivity {
 
         btnAll = findViewById(R.id.btnAll);
         btnAll.setOnClickListener(v -> openHomeActivity());
+
+        Button btnComparison = findViewById(R.id.btnComparison);
+        btnComparison.setOnClickListener(v -> openComparisonLayout());
 
         btnSearch = findViewById(R.id.btnHistorySearch);
         btnSearch.setOnClickListener(v -> {

@@ -83,9 +83,7 @@ public class HistoricResultsActivity extends AppCompatActivity {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dateArray);
 
         graph.addSeries(series);
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(HistoricResultsActivity.this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
-        graph.getGridLabelRenderer().setNumVerticalLabels(8);
+
 
 
         Float maxValue = values.stream().max(Comparator.comparing(Float::floatValue)).get();
@@ -96,8 +94,13 @@ public class HistoricResultsActivity extends AppCompatActivity {
         graph.getViewport().setYAxisBoundsManual(true);
 
 
-        graph.getGridLabelRenderer().setHumanRounding(false);
-        graph.getViewport().setScalableY(true);
+        graph.getGridLabelRenderer().setHumanRounding(true);
+        graph.getViewport().setScalable(true);
+
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(HistoricResultsActivity.this));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        graph.getGridLabelRenderer().setNumVerticalLabels(8);
+
     }
 
     public void openHomeActivity() {
