@@ -28,7 +28,7 @@
                 android:hint="Enter a number"
                 android:inputType="numberDecimal"
                 android:maxLength="27"
-                android:textSize="12sp"
+                android:textSize="22sp"
                 android:layout_centerHorizontal="true"/>
 
             <Spinner
@@ -51,8 +51,6 @@
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"/>
 
-
-
             <Spinner
                 android:id="@+id/spinnerCurrencyList2"
                 android:layout_width="wrap_content"
@@ -60,7 +58,8 @@
                 android:dropDownWidth="75dp"
                 android:entries="@array/currencyList"
                 android:layout_below="@id/txtCurrency1"
-                android:layout_marginTop="30dp"/>
+                android:layout_marginTop="30dp"
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,8 +70,6 @@
                 android:layout_below="@id/spinnerCurrencyList2"
                 android:layout_marginTop="15dp"
                 android:layout_centerHorizontal="true"/>
-
-
 
     </RelativeLayout>
 

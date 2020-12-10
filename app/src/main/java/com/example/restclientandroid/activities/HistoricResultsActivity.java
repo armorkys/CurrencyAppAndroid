@@ -73,7 +73,7 @@ public class HistoricResultsActivity extends AppCompatActivity {
             year = Integer.parseInt(s.substring(0, 4));
             month = Integer.parseInt(s.substring(5, 7));
             day = Integer.parseInt(s.substring(8, 10));
-            gCalendar = new GregorianCalendar(year, month, day);
+            gCalendar = new GregorianCalendar(year, month-1, day);
 
             if(gCalendarTemp == null){
                 gCalendarTemp = gCalendar;
@@ -113,14 +113,14 @@ public class HistoricResultsActivity extends AppCompatActivity {
         graph.getViewport().setMaxY(maxValue);
         graph.getViewport().setYAxisBoundsManual(true);
 
-        graph.getGridLabelRenderer().setHumanRounding(true);
+        graph.getGridLabelRenderer().setHumanRounding(false);
         graph.getViewport().setScalable(true);
 
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(HistoricResultsActivity.this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(4);
         graph.getGridLabelRenderer().setNumVerticalLabels(8);
 
-        graph.setCursorMode(true);
+        //graph.setCursorMode(true);
     }
 
     public void openHomeActivity() {

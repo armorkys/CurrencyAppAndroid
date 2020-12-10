@@ -33,7 +33,7 @@
             android:inputType="date"
             android:hint="Date From"
             android:text=""
-            android:textSize="15sp"
+            android:textSize="22sp"
             android:maxLength="10"/>
 
         <EditText
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
-            android:textSize="15sp"
+            android:textSize="22sp"
             android:hint="Date To"
             android:text=""
             android:layout_below="@id/txtInputDateFrom"
@@ -56,6 +56,7 @@
             android:id="@+id/spinnerCurrencyList"
             android:layout_below="@+id/txtInputDateTo"
             android:layout_marginTop="15dp"
+            android:textSize="22sp"
             android:entries="@array/currencyList"
             android:dropDownWidth="75dp"
             />

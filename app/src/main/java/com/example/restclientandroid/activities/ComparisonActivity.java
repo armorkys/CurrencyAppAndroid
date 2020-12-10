@@ -107,19 +107,15 @@ public class ComparisonActivity extends AppCompatActivity {
         currencyResult1 = Double.parseDouble(inputCurrency1.getText().toString()) / multiplier1;
         currencyResult2 =  currencyResult1 * multiplier2;
 
-       int num1Size = String.valueOf(currencyResult1).length();
-       int num2Size = String.valueOf(currencyResult2).length();
+       int maxSize = 99999999;
 
-       int maxSize = 20;
-
-        System.out.println("## " + num1Size + " " + num2Size);
-        if(num1Size > maxSize || num2Size > maxSize){
+        if(currencyResult1 > maxSize || currencyResult2 > maxSize){
             Toast.makeText(this, "Please try smaller numbers or different currency", Toast.LENGTH_SHORT).show();
             return;
         } else if(currencyResult1 < 0 || currencyResult2 < 0){
             Toast.makeText(this, "Bad number inputs, result less than 0", Toast.LENGTH_SHORT).show();
             return;
-        }else {
+        }else if(currencyResult1 < maxSize && currencyResult2 < maxSize) {
             txtCurrency1.setText(df.format(currencyResult1));
             txtCurrency2.setText(df.format(currencyResult2));
         }
