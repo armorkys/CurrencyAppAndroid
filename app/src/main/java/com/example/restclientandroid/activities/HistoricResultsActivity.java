@@ -113,7 +113,7 @@ public class HistoricResultsActivity extends AppCompatActivity {
         graph.getViewport().setMaxY(maxValue);
         graph.getViewport().setYAxisBoundsManual(true);
 
-        graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.getGridLabelRenderer().setHumanRounding(true);
         graph.getViewport().setScalable(true);
 
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(HistoricResultsActivity.this));
