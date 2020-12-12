@@ -2,7 +2,7 @@
 Android app created for viewing currency ratios to EUR, currency history and currency calculations..
 
 ## Project status:
-In-Development
+Paused
 
 ## Technologies
 Minimum SDK Version - 24
